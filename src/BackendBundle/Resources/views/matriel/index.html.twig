@@ -1,0 +1,83 @@
+{% extends 'AgentGestionnaire.html.twig' %}
+{% block body %}
+
+   <center> <h1 style="color:#ffffff">Lists of Products !</h1></center>
+<br><br><br>
+
+        <div class="container">
+
+            <div class="row top-margin">
+            <form action="{{ path('matriel_index') }}" method="post">
+                <div class="col-xs-offset-2 col-xs-8">
+                    <input type="text" name="myInput" id="myInput" style="width: 100%" onkeyup="myFunction()" placeholder="Search here" title="Type in a type" class="form-control">
+
+                </div>
+                <div class="col-xs-1">
+                    <button type="submit" class="btn btn-danger"><i class="fa fa-search" style="color: white;"></i></button>
+
+                </div>
+            </form>
+
+             </div>
+
+
+    <table class="table table-hover table-bordered" style="border-color: #ffffff" id="dataTables-example">
+
+        <thead>
+        <tr>
+            <th style="color: #ffffff">IDM</th>
+            <th style="color: #ffffff">Type</th>
+            <th style="color: #ffffff">Reference</th>
+            <th style="color: #ffffff">Photo</th>
+            <th style="color: #ffffff">Actions</th>
+        </tr>
+        </thead>
+        <tbody style="color:#ffffff">
+        {% for matriel in matriels %}
+            <tr name="tr">
+                <td  style="color: #ffffff"><a href="{{ path('matriel_show', { 'id': matriel.IDM }) }}">{{ matriel.IDM }}</a></td>
+                <td name="td" style="color: #ffffff">{{ matriel.type }}</td>
+                <td  style="color: #ffffff">{{ matriel.reference }}</td>
+                <td> <img style="height: 10%;width: 10%" class="img-fluid" src="{{ asset('uploads/post/' ~ matriel.photo) }}" alt=""> </td>
+                <td style="color: #ffffff">
+                    <a href="{{ path('matriel_show', { 'id': matriel.IDM }) }}" class="btn btn-primary">show</a>
+                    |
+                    <a href="{{ path('matriel_edit', { 'id': matriel.IDM }) }}" class="btn btn-warning">edit</a>
+
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+   <br>
+            <a href="{{ path('matriel_add') }}" class="btn btn-warning">Create a new Matriel</a>
+
+
+        </div>
+<script>
+        function myFunction() {
+            console.log("trr");
+            // Declare variables
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("dataTables-example");
+            tr = table.getElementsByTagName("tr");
+
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+
+{% endblock %}

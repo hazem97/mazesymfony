@@ -1,0 +1,17 @@
+{% extends 'AdminPage.html.twig' %}
+{% block body %}
+
+    <center><h1>Staff creation</h1></center>
+    <br><br><br><br><br><br>
+
+    {{ form_start(form) }}
+    {{ form_widget(form)}}
+        <br>
+
+                    <input class="btn btn-primary" type="submit" value="ADD" />
+
+
+    {{ form_end(form) }}
+    <a  href="{{ path('staff_index') }}">Back to the list</a>
+
+{% endblock %}

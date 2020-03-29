@@ -1,0 +1,40 @@
+{% extends 'AdminPage.html.twig' %}
+{% block body %}
+    <center><h1>STAFF</h1></center>
+    <br><br><br><br><br><br>
+    <table class="table table-hover table-bordered"  id="dataTables-example">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ staff.id }}</td>
+            </tr>
+            <tr>
+                <th>Firstname</th>
+                <td>{{ staff.firstname }}</td>
+            </tr>
+            <tr>
+                <th>Lastname</th>
+                <td>{{ staff.lastname }}</td>
+            </tr>
+            <tr>
+                <th>Phonenumber</th>
+                <td>{{ staff.phoneNumber }}</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('staff_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('staff_edit', { 'id': staff.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

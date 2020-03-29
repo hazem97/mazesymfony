@@ -1,0 +1,59 @@
+{% extends 'AdminPage.html.twig' %}
+
+{% block body %}
+
+    <center><h1>Staff list</h1></center>
+    <br><br><br><br><br><br><br>
+    <table style="border-color: #000000;width: 20%" class="table table-hover table-bordered" id="dataTables-example">
+
+    <thead style="border-color: #000000">
+            <tr style="color: #000000;border-color: #000000">
+                <th style="color: #000000;border-color: #000000">Firstname</th>
+                <th style="color: #000000;border-color: #000000">Lastname</th>
+                <th style="color: #000000;border-color: #000000">Salary</th>
+                <th style="color: #000000;border-color: #000000">Post</th>
+                <th style="color: #000000;border-color: #000000">RIB</th>
+                <th style="color: #000000;border-color: #000000">Prime</th>
+                <th style="color: #000000;border-color: #000000">Status</th>
+                <th style="color: #000000;border-color: #000000">DATE_Debut_Travail</th>
+                <th style="color: #000000;border-color: #000000">NB_Conje</th>
+                <th style="color: #000000;border-color: #000000">Heure</th>
+                <th style="color: #000000;border-color: #000000">Phonenumber</th>
+                <th style="color: #000000;border-color: #000000">Reference</th>
+                <th style="color: #000000;border-color: #000000">Actions</th>
+            </tr>
+        </thead>
+        <tbody style="color: #000000;border-color: #000000">
+        {% for staff in staffs %}
+            <tr>
+
+                <td style="color: #000000;border-color: #000000">{{ staff.firstname }}</td>
+                <td style="color: #000000;border-color: #000000">{{ staff.lastname }}</td>
+                <td style="color: #000000;border-color: #000000">{{ staff.salary }}</td>
+                <td style="color: #000000;border-color: #000000">{{ staff.post }}</td>
+                <td style="color: #000000;border-color: #000000">{{ staff.rib }}</td>
+                <td style="color: #000000;border-color: #000000">{{ staff.prime }}</td>
+                <td style="color: #000000;border-color: #000000">{{ staff.statut }}</td>
+                <td style="color: #000000;border-color: #000000">{{ staff.Datedeb|date('d-m-Y') }}</td>
+                <td style="color: #000000;border-color: #000000">{{ staff.nbconj }}</td>
+                <td style="color: #000000;border-color: #000000">{{ staff.nbheur}}</td>
+                <td style="color: #000000;border-color: #000000">{{ staff.phoneNumber }}</td>
+                <td style="color: #000000;border-color: #000000">{{ staff.reference }}</td>
+                <td style="color: #000000;border-color: #000000">
+
+                            <a href="{{ path('staff_show', { 'id': staff.id }) }}" class="btn btn-primary">show</a>
+                    |
+                            <a href="{{ path('staff_edit', { 'id': staff.id }) }}" class="btn btn-warning">edit</a>
+
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('staff_new') }}" class="btn btn-warning">Create a new staff</a>
+        </li>
+    </ul>
+{% endblock %}

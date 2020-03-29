@@ -1,0 +1,17 @@
+{% extends 'AgentGestionnaire.html.twig' %}
+
+{% block body %}
+   <center> <h1 style="color:#ffffff">Reservermatriel creation</h1></center>
+<br><br><br><br><br>
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+    <br><br><input class="btn btn-primary" type="submit" value="Ajouter" />
+    {{ form_end(form) }}
+
+    <ul>
+        <li>
+            <a style="color:blue" href="{{ path('reservermatriel_index') }}">Back to the list</a>
+        </li>
+    </ul><br><br>
+
+{% endblock %}

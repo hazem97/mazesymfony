@@ -1,0 +1,41 @@
+{% extends 'AgentGestionnaire.html.twig' %}
+
+{% block body %}
+    <center><h1 style="color:#ffffff">Reservermatriels list</h1> </center>
+
+            <br><br><br><br><br><br>
+    <table class="table table-hover table-bordered" style="border-color: #ffffff" id="dataTables-example">
+        <thead>
+            <tr>
+                <th style="color: #ffffff">ID</th>
+                <th style="color: #ffffff">STAFF_NAME</th>
+                <th style="color: #ffffff">Material_Type</th>
+                <th style="color: #ffffff">Reserved_at</th>
+                <th style="color: #ffffff">Recupered_at</th>
+                <th style="color: #ffffff">Actions</th>
+            </tr>
+        </thead>
+        <tbody style="color:#ffffff">
+        {% for reserverMatriel in reserverMatriels %}
+            <tr>
+                <td style="color:#ffffff"><a href="{{ path('reservermatriel_show', { 'id': reserverMatriel.id }) }}">{{ reserverMatriel.id }}</a></td>
+                <td style="color:#ffffff">{{ reserverMatriel.staff.firstname }}</td>
+                <td style="color:#ffffff">{{ reserverMatriel.matriel.type }}</td>
+                <td style="color:#ffffff">{% if reserverMatriel.recuperedat %}{{ reserverMatriel.reservedat|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td style="color:#ffffff">{% if reserverMatriel.recuperedat %}{{ reserverMatriel.recuperedat|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td style="color:#ffffff">
+
+                            <a href="{{ path('reservermatriel_show', { 'id': reserverMatriel.id }) }}" class="btn btn-primary">show</a>
+                    |
+                            <a href="{{ path('reservermatriel_edit', { 'id': reserverMatriel.id }) }}" class="btn btn-warning">edit</a>
+
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+<br>
+
+            <a href="{{ path('reservermatriel_new') }}" class="btn btn-warning">Create a new reserverMatriel</a>
+
+{% endblock %}

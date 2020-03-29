@@ -1,0 +1,39 @@
+admin_dashboard:
+    path:     /admin
+    defaults: { _controller: UserBundle:Default:index }
+
+delete_user:
+    path:     /deleteUser
+    defaults: { _controller: UserBundle:User:deleteUser }
+
+user_index:
+    path:     /ListUser
+    defaults: { _controller: UserBundle:User:index }
+
+user_edit:
+    path:     /{id}/user_edit
+    defaults: { _controller: UserBundle:User:edit }
+
+update_user:
+    path:     /updateuser
+    defaults: { _controller: UserBundle:User:updateUser }
+
+agentgest:
+     path:     /agentgestionnaire
+     defaults: { _controller: UserBundle:User:AgentGest }
+
+Client:
+     path:     /client
+     defaults: { _controller: UserBundle:User:Client }
+
+agentTrans:
+     path:     /agentTransport
+     defaults: { _controller: UserBundle:User:AgentTra }
+
+agentFinan:
+     path:     /agentFinancier
+     defaults: { _controller: UserBundle:User:AgentFinanc }
+
+chart:
+     path:     /chart
+     defaults: { _controller: UserBundle:User:chart }

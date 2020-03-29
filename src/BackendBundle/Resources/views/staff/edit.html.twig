@@ -1,0 +1,31 @@
+{% extends 'AdminPage.html.twig' %}
+
+{% block body %}
+    <center><h1>Staff edit</h1></center>
+    <br><br><br><br><br><br>
+    {{ form_start(edit_form) }}
+    {{ form_widget(edit_form)}}
+        <br>
+      <table class="table">
+          <tr>
+              <td><input type="submit" value="Edit" class="btn btn-primary" /></td>
+
+          </tr>
+
+      </table>
+
+    {{ form_end(edit_form) }}
+    <br>
+    <br>
+    <table>
+        <tr>
+            <td> {{ form_start(delete_form) }}
+                <input type="submit" class="btn btn-danger" value="Delete">
+                {{ form_end(delete_form) }}</td>
+            <td><a href="{{ path('staff_index') }}" class="btn btn-default">Back to the list</a></td>
+        </tr>
+    </table>
+
+
+
+{% endblock %}

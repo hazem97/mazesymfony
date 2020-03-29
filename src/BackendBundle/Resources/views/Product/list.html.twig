@@ -1,0 +1,67 @@
+{%  extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1>Lists of Products !</h1>
+
+    <div class="album py-5 bg-light">
+        <div class="container">
+
+
+            <br><br>
+
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+
+<div class="post-container">
+            <div class="row">
+
+
+                    <section class="featured section-padding">
+                        <div class="container">
+                            <div class="row">
+                                {% for posts in posts %}
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4">
+                                    <div class="featured-box">
+                                        <figure>
+                                            <a href="{{ path('detailedpost',{'id': posts.id}) }}"><img class="img-fluid" src="{{ asset('uploads/post/' ~ posts.photo) }}" alt=""></a>
+                                        </figure>
+                                        <div class="content-wrapper">
+                                            <div class="feature-content">
+                                                <h4><a href="{{ path('detailedpost',{'id': posts.id}) }}">{{ posts.productType }}</a></h4>
+                                                <p class="listing-tagline">{{ posts.priceTTC|trim ~ "dt" }}</p>
+
+                                            </div>
+                                            <div class="listing-bottom clearfix">
+                                                <div class="btn-group">
+                                                    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                                                        <a href="{{ path('index_achat') }}"><button type="button" class="btn btn-sm btn-outline-primary">Acheter</button></a>
+                                                    {% else %}
+                                                        <a href="{{ path('detailedpost',{'id': posts.id}) }}"><button type="button" class="btn btn-sm btn-outline-primary">Details</button></a>
+                                                    {% endif %}
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+                            </div>
+                        </div>
+
+                    </section>
+
+
+
+            </div>
+
+        </div>
+    </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+
+
+{% endblock %}

@@ -1,0 +1,112 @@
+ {% extends 'Backend.html.twig' %}
+ {% block title %} welcome gestionnaire{% endblock %}
+ {% block stylesheet %}
+  <link href="{{ asset('admin/css/progressStyle.css') }}" rel="stylesheet" type="text/css" />
+
+ {% endblock %}
+ {% block header %}
+  <!--sidebar nav start-->
+  <ul class="nav nav-pills nav-stacked custom-nav">
+   <li class="active"><a href=""><i class="lnr lnr-power-switch"></i><span>Dashboard</span></a></li>
+   <li><a href="{{path('fos_user_change_password')}}"><i class="lnr lnr-envelope"></i> <span>Update Profile</span></a>
+   <li class="menu-list">
+    <a href="#"><i class="lnr lnr-cog"></i>
+     <span>Fournisseurs</span></a>
+    <ul class="sub-menu-list">
+     <li><a href="{{ path('fournisseur_index')}}">List</a> </li>
+     <li><a href="{{ path('fournisseur_new')}}">ADD</a></li>
+    </ul>
+   </li>
+   <li class="menu-list"><a href="#"><i class="lnr lnr-envelope"></i> <span>MATERIAL</span></a>
+    <ul class="sub-menu-list">
+     <li><a href="{{ path('matriel_index')}}">LIST</a> </li>
+     <li><a href="{{ path('matriel_add')}}">ADD</a></li>
+    </ul>
+   </li>
+   <li class="menu-list"><a href="#"><i class="lnr lnr-envelope"></i> <span>Reservation</span></a>
+    <ul class="sub-menu-list">
+     <li><a href="{{ path('reservermatriel_index')}}">LIST</a> </li>
+     <li><a href="{{ path('reservermatriel_new')}}">ADD</a></li>
+    </ul>
+   </li>
+   <li class="menu-list"><a href="#"><i class="lnr lnr-tag"></i> <span>Besoin</span></a>
+    <ul class="sub-menu-list">
+     <li><a href="{{ path('index_besoins')}}">LIST</a> </li>
+     <li><a href="{{ path('backend_besoin_createOne')}}">ADD</a></li>
+    </ul>
+   </li>
+   <li class="menu-list"><a href="#"><i class="lnr lnr-store"></i> <span>Commandes</span></a>
+    <ul class="sub-menu-list">
+     <li><a href="{{ path('index_cmd')}}">LIST</a> </li>
+     <li><a href="{{ path('add_cmd')}}">ADD</a></li>
+    </ul>
+   </li>
+   <li class="menu-list"><a href="#"><i class="lnr lnr-cart"></i> <span>Achats</span></a>
+    <ul class="sub-menu-list">
+     <li><a href="{{ path('read_achat')}}">LIST</a> </li>
+    </ul>
+   </li>
+
+  </ul>
+ {% endblock %}
+{% block body %}
+<center><h1 style="color: #ffffff"> WELCOM GESTIONNAIRE</h1></center>
+    <br><br>
+ <center><div class="col-lg-6 col-md-12">
+   <div class="card">
+    <div class="card-header card-header-warning">
+     <h4 class="card-title">Materials Stats</h4>
+     <p class="card-category">New Material</p>
+    </div>
+    <div class="card-body table-responsive">
+     <table class="table table-hover">
+      <thead class="text-warning">
+      <th>IDM</th>
+      <th>Reference</th>
+      <th>Type</th>
+      <th>Photo</th>
+      </thead>
+      <tbody>
+      {% for matriel in matriels %}
+       <tr>
+        <td>{{matriel.IDM}}</td>
+        <td>{{ matriel.reference}}</td>
+        <td>{{ matriel.type}}</td>
+        <td> <img style="height: 10%;width: 10%"  src="{{ asset('uploads/post/' ~ matriel.photo) }}" alt=""> </td>
+       </tr>
+      {% endfor %}
+      </tbody>
+     </table>
+    </div>
+   </div>
+   <div class="card">
+    <div class="card-header card-header-warning">
+     <h4 class="card-title">Reservations Stats</h4>
+     <p class="card-category">New Reservation</p>
+    </div>
+    <div class="card-body table-responsive">
+     <table class="table table-hover">
+      <thead class="text-warning">
+      <th >ID</th>
+      <th >STAFF_NAME</th>
+      <th >Material_Type</th>
+      <th >Reserved_at</th>
+      <th >Recupered_at</th>
+      </thead>
+      <tbody>
+      {% for reserv in reservations %}
+       <tr>
+        <td>{{ reserv.id }}</td>
+        <td>{{ reserv.staff.firstname }}</td>
+        <td>{{ reserv.matriel.type }}</td>
+        <td>{% if reserv.recuperedat %}{{ reserv.reservedat|date('Y-m-d H:i:s') }}{% endif %}</td>
+        <td>{% if reserv.recuperedat %}{{ reserv.recuperedat|date('Y-m-d H:i:s') }}{% endif %}</td>
+       </tr>
+      {% endfor %}
+      </tbody>
+     </table>
+    </div>
+   </div>
+  </div></center>
+ {% endblock %}
+

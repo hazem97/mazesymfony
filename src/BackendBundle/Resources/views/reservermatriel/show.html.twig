@@ -1,0 +1,44 @@
+{% extends 'AgentGestionnaire.html.twig' %}
+{% block body %}
+    <h1 style="color: #ffffff">Reservation</h1>
+
+    <table style="border-color: #ffffff" class="table table-hover table-bordered"  id="dataTables-example">
+        <tbody>
+        <tr>
+            <th style="color: #ffffff">ID</th>
+            <td style="color: #ffffff">{{ reserverMatriel.id }}</td>
+        </tr>
+        <tr>
+            <th style="color: #ffffff">Type_Mat</th>
+            <td style="color: #ffffff"> {{ reserverMatriel.matriel.type }}</td>
+        </tr>
+        <tr>
+            <th style="color: #ffffff">firstName_Staff</th>
+            <td style="color: #ffffff">{{ reserverMatriel.staff.firstname }}</td>
+        </tr>
+
+        <tr>
+            <th style="color: #ffffff">Reserved_at</th>
+            <td style="color:#ffffff">{% if reserverMatriel.recuperedat %}{{ reserverMatriel.recuperedat|date('Y-m-d H:i:s') }}{% endif %}</td>
+        </tr>
+        <tr>
+            <th style="color: #ffffff">Recupered_at</th>
+            <td style="color:#ffffff">{% if reserverMatriel.recuperedat %}{{ reserverMatriel.reservedat|date('Y-m-d H:i:s') }}{% endif %}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('reservermatriel_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('reservermatriel_edit', { 'id': reserverMatriel.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+            <input type="submit"  class="btn btn-warning" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
